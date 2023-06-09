@@ -7,7 +7,7 @@ for i, j in data.items():
 
 prices = sorted(prices.items(), key=lambda x:x[1])
 
-for i in prices:
+for i in reversed(prices):
     print(i[0], i[1])
 
 s = prices[0]
@@ -26,7 +26,7 @@ s_amount = amount / data[s[0]]['ir']['sell']
 s_amount_tl = s_amount * data[s[0]]['tr']['buy']
 
 print(s[0], data[s[0]]['ir']['sell'], ':')
-print(f'\t{amount} IRT = {s_amount_tl} TL\n')
+print(f'\t{amount} IRT ÷ {prices[0][1]} = {s_amount_tl} TL\n')
 
 
 best = {}
