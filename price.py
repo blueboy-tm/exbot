@@ -17,7 +17,7 @@ print('')
 print('Distance:', e[1] - s[1])
 print('')
 
-amount = 25_000_000
+amount = 20_000_000
 # # tax = 0.0025
 
 
