@@ -1,20 +1,26 @@
 import json
 
 data = json.load(open('data.json'))
-prices = {}
+prices_sell = {}
+prices_buy = {}
 for i, j in data.items():
-    prices[i] = j['ir']['sell'] / j['tr']['buy']
+    prices_sell[i] = j['ir']['sell'] / j['tr']['buy']
+    prices_buy[i] = j['ir']['buy'] / j['tr']['sell']
 
-prices = sorted(prices.items(), key=lambda x:x[1])
+prices_sell = sorted(prices_sell.items(), key=lambda x:x[1])
+prices_buy = sorted(prices_buy.items(), key=lambda x:x[1])
 
-for i in reversed(prices):
+for i in reversed(prices_sell):
+    print(i[0], i[1])
+print('\n\n=====================================\n\n')
+for i in reversed(prices_buy):
     print(i[0], i[1])
 
-s = prices[0]
-e = prices[-1]
+s = prices_sell[0]
+e = prices_sell[-1]
 
 print('')
-print('Distance:', e[1] - s[1])
+print('Distance:', prices_buy[-1][1] - prices_sell[0][1])
 print('')
 
 amount = 20_000_000
@@ -26,7 +32,7 @@ s_amount = amount / data[s[0]]['ir']['sell']
 s_amount_tl = s_amount * data[s[0]]['tr']['buy']
 
 print(s[0], data[s[0]]['ir']['sell'], ':')
-print(f'\t{amount} IRT ÷ {prices[0][1]} = {s_amount_tl} TL\n')
+print(f'\t{amount} IRT ÷ {prices_sell[0][1]} = {s_amount_tl} TL\n')
 
 
 best = {}
